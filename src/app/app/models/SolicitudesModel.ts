@@ -7,3 +7,4 @@ export interface SolicitudesModel{
     estado: String;
     idModificaciones: Number;
 }
+//hola 
