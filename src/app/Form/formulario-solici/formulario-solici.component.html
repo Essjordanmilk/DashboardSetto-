@@ -1,0 +1,92 @@
+<form [formGroup]="solicitudForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Información General</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Id Solicitud" formControlName="idSolicitud"></textarea>
+            <mat-error *ngIf="solicitudForm.controls['idSolicitud'].hasError('requerido')">
+              idSolicitud<strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Documento Inquilino" formControlName="documentoinqui"></textarea>
+            <mat-error *ngIf="solicitudForm.controls['documentoinqui'].hasError('requerido')">
+              Documento Inquilino <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label formControlName="tipSolicitud">Tipo Solicitud</mat-label>
+            <mat-select>
+              <mat-option value="one">Prestamo cancha</mat-option>
+              <mat-option value="two">Salon eventos</mat-option>
+              <mat-option value="three">Terraza</mat-option>
+              <mat-option value="four">Area BBQ</mat-option>
+              <mat-option value="five">Gimnasio</mat-option>
+              <mat-option value="six">Parqueadero</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="fill">
+            <input matInput placeholder="Fecha" formControlName="fecha" type="date">
+            <mat-error *ngIf="solicitudForm.controls['fecha'].hasError('requerido')">
+              Fecha <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Hora" formControlName="hora" type="time">
+            <mat-error *ngIf="solicitudForm.controls['hora'].hasError('requerido')">
+              Hora <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+<div class="row">
+  <div class="col">
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select>
+        <mat-option value="one">Activa</mat-option>
+        <mat-option value="two">Inactiva</mat-option>
+      </mat-select>
+      <mat-error *ngIf="solicitudForm.controls['estado'].hasError('requerido')">
+        Estado <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Id modificaciones" formControlName="idModificaciones"></textarea>
+      <mat-error *ngIf="solicitudForm.controls['idModificaciones'].hasError('requerido')">
+        Id modificaciones<strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

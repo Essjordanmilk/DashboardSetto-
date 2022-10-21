@@ -1,0 +1,50 @@
+<form [formGroup]="Correspondencia" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Información General</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Documento Inquilino" formControlName="documentoinqui"></textarea>
+            <mat-error *ngIf="Correspondencia.controls['documentoinqui'].hasError('requerido')">
+              Documento Inquilino <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Id" formControlName="idSolicitud"></textarea>
+            <mat-error *ngIf="Correspondencia.controls['idSolicitud'].hasError('requerido')">
+              Id <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" formControlName="tipoCorres">
+            <mat-label>Tipo Correspondencia</mat-label>
+            <mat-select>
+              <mat-option value="one">Correo</mat-option>
+              <mat-option value="two">Recibo Internet</mat-option>
+              <mat-option value="three">Recibo Agua</mat-option>
+              <mat-option value="four">Recibo Luz</mat-option>
+              <mat-option value="five">Recibo Gas</mat-option>
+              <mat-option value="six">Paqueteria</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

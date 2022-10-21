@@ -1,0 +1,15 @@
+.boton-cerrar-contenedor{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 20px;
+    border-radius: 5%;
+}
+.boton-cerrar{
+    background-color: #513252;
+    color: white;
+}
+.boton-cerrar:hover{
+    background-color:#CA4E7999;
+    color: white;
+}

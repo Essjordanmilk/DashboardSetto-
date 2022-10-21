@@ -1,0 +1,64 @@
+<form [formGroup]="VehiculoForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Información General</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Documento Inquilino" formControlName="documentoinqui"></textarea>
+            <mat-error *ngIf="VehiculoForm.controls['documentoinqui'].hasError('requerido')">
+              Documento Inquilino <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Placa" formControlName="placa">
+              <mat-error *ngIf="VehiculoForm.controls['placa'].hasError('required')">
+                Placa <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col">
+          <!--last name -->
+          <mat-form-field class="full-width">
+            <input matInput placeholder="tipo vehiculo" formControlName="tip_vehiculo">
+            <mat-error *ngIf="VehiculoForm.controls['tip_vehiculo'].hasError('requerido')">
+              tip_vehiculo <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+          <!--end last name -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Color" formControlName="color"></textarea>
+            <mat-error *ngIf="VehiculoForm.controls['color'].hasError('requerido')">
+              Color <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Modelo" formControlName="modelo"></textarea>
+            <mat-error *ngIf="VehiculoForm.controls['modelo'].hasError('requerido')">
+              Modelo <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

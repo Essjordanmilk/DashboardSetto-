@@ -1,0 +1,69 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+
+
+    <mat-nav-list>
+      <a mat-list-item href="/dashboard" class="text-white"><i class="fi fi-sr-chart-histogram me-3"></i>Dashboard</a>
+      <a mat-list-item href="/inquilinos" class="text-white"><i class="fi fi-sr-user me-3"></i> Inquilinos</a>
+      <a mat-list-item href="/visitantes" class="text-white"><i class="fi fi-sr-users-alt me-3"></i> Visitantes </a>
+      <a mat-list-item href="/solicitudes" class="text-white"><i class="fi fi-sr-megaphone me-3"></i> Solicitudes</a>
+      <a mat-list-item href="/correspondecia" class="text-white"><i class="fi fi-sr-envelope me-3"></i>
+        Correspondencia</a>
+      <a mat-list-item href="/vehiculos" class="text-white"><i class="fi fi-sr-car-alt me-3"></i>Vehiculos</a>
+      <a mat-list-item href="/formularioMain" class="text-white"><i class="fi fi-sr-document me-3"></i> Formulario </a>
+    </mat-nav-list>
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <!-- inicio de navbar con bootstrap -->
+      <span class="example-spacer"></span>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+        <div>
+        </div>
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="mx-auto"></div>
+            <span class="example-spacer"></span>
+            <ul class="navbar-nav">
+              
+              <li class="nav-item">
+                
+                <a href="#"><i class="fi fi-sr-bell me-4 icon"></i></a>
+
+              </li>
+
+              <li class="nav-item">
+
+                <a href="#"><i class="fi fi-sr-envelope me-4 icon"></i></a>
+
+              </li>
+
+              <li class="nav-item">
+
+                <a href="#"><i class="fi fi-sr-user me-4 icon"></i></a>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+      <!-- Fin de navbar con bootstrap -->
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

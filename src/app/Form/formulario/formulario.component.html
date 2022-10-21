@@ -1,0 +1,109 @@
+<form [formGroup]="formularioVisi" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Información General</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Documento Inquilino" formControlName="documentoinqui"></textarea>
+            <mat-error *ngIf="formularioVisi.controls['documentoinqui'].hasError('requerido')">
+              Documento Inquilino <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--end apartamento 
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label formControlName="tipoSolicitud">Tipo Solicitud</mat-label>
+            <mat-select>
+              <mat-option value="one">Agregar visita</mat-option>
+              <mat-option value="two">Actualizar visita</mat-option>
+              <mat-option value="three">Cancelar visita</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        -->
+
+      </div>
+      <div class="row">
+        <div class="col">
+          
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre Visitante" formControlName="nombreVisitante">
+            <mat-error *ngIf="formularioVisi.controls['nombreVisitante'].hasError('required')">
+              Nombre Visitante <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+        <div class="col">
+         
+          <mat-form-field class="=width">
+            <input matInput placeholder="Detalles Visitante" formControlName="detallesVisitante">
+            <mat-error *ngIf="formularioVisi.controls['detallesVisitante'].hasError('requerido')">
+              Detalles Visita <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+         
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="width">
+            <textarea matInput placeholder="Documento Visitante" formControlName="documentoVisitante"></textarea>
+            <mat-error *ngIf="formularioVisi.controls['documentoVisitante'].hasError('requerido')">
+              Documento <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="fill">
+            <input matInput placeholder="Fecha" formControlName="fecha" type="date">
+            <mat-error *ngIf="formularioVisi.controls['fecha'].hasError('requerido')">
+              Fecha <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Hora" formControlName="hora" type="time">
+            <mat-error *ngIf="formularioVisi.controls['hora'].hasError('requerido')">
+              Hora <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+
+        <!--numero apartamento-->
+        <div class="col">
+          <mat-form-field>
+            <input matInput #postalCode maxlength="3" placeholder="Apartamento" type="number"
+              formControlName="apartamento">
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+          </mat-form-field>
+        </div>
+        <!--end apartamento -->
+
+        <!--Torre -->
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Torre</mat-label>
+            <input formControlName="torre" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--end Torre -->
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,41 @@
+<h2 class="title">{{ Correspondencia }}</h2>
+
+
+<!-- Inicio Filtro -->
+<div class="container-fluid">
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    <!-- Final Filtro-->
+
+
+    <!-- Inicio tabla -->
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <div matColumnDef="{{disCol}}" *ngFor="let disCol of displayedColumns">
+                <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
+                <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
+            </div>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <!-- Final Tabla -->
+
+
+
+            <!-- Mensaje por si no encuntra info -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <!-- Paginador -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>
+
+
+<div class="button-contenedor">
+    <button mat-button (click)="openDialog()" class="button" type="button">Nuevo Registro</button>
+  </div>

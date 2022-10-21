@@ -1,0 +1,35 @@
+.grid-container {
+
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background-color: white;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  
+}
+
+.letras{
+  color:white ;
+}
+.informa{
+  margin-left: 15px;
+}
+.titulodash{
+  color:black ;
+}
+
+

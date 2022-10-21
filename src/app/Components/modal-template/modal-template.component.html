@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>{{accion}} {{titulo}}</h1>
+
+<div mat-dialog-actions>
+  <div *ngIf="titulo == 'visitante'" >   
+    <app-formulario></app-formulario>
+  </div>
+
+  <div *ngIf="titulo == 'correspondencia'" >   
+    <app-formulario-corres></app-formulario-corres>
+  </div>
+
+  <div *ngIf="titulo == 'inquilino'" >   
+    <app-formulario-inqui></app-formulario-inqui>
+  </div>
+
+  <div *ngIf="titulo == 'solicitud'" >   
+    <app-formulario-solici></app-formulario-solici>
+  </div>
+ 
+
+  <div *ngIf="titulo == 'vehiculo'" >   
+    <app-formulario-vehi></app-formulario-vehi>
+  </div>
+
+
+
+</div>
+<div class="boton-cerrar-contenedor">
+  <button mat-button mat-dialog-close class="boton-cerrar">Cerrar</button>
+</div>
