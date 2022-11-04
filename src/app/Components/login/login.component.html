@@ -1,7 +1,7 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container sign-in-container">
-			<form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+			<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 				<h1>INGRESAR</h1>
 
 					<input type="text" placeholder="email" formControlName="username"/>

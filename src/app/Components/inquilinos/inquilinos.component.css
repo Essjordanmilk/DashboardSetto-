@@ -42,20 +42,33 @@ table {
   text-decoration-color: none;
 }
 
-.button-contenedor{
+.button-contenedor {
   display: flex;
   justify-content: center;
   width: 100%;
   padding-top: 20px;
   border-radius: 5%;
-  
+
 }
-.button{
+
+.button {
   background-color: #513252;
   color: white;
 }
 
-.button:hover{
-  background-color:#CA4E7999;
+.button:hover {
+  background-color: #CA4E7999;
   color: white;
+}
+
+.opcion {
+  text-decoration: none;
+  text-decoration-color: none;
+  color: #513252;
+  padding: 10px;
+}
+
+.opcion a:hover {
+  color: #CA4E7999;
+  
 }

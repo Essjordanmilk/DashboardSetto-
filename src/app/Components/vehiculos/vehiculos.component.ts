@@ -17,8 +17,9 @@ export class VehiculosComponent implements OnInit {
 
   dataSource:MatTableDataSource<any>;
   displayedColumns: string[];
+  Vehiculos = "VEHICULOS"
+  Acciones = "acciones"
 
-  Vehiculos = "VEHICULOS";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
     constructor(public modalService:ModalService,public service:ApiService, public dialog: MatDialog) { 
@@ -43,8 +44,8 @@ export class VehiculosComponent implements OnInit {
   
   }
   openDialog() {
-    this.modalService.titulo = "vehiculo"
-    this.modalService.accion = "Registrar"
+    this.modalService.titulo = "vehiculo";
+    this.modalService.accion.next("crearVehiculo");
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'
@@ -58,6 +59,7 @@ export class VehiculosComponent implements OnInit {
     for(let column in data[0]){
       this.displayedColumns.push(column)
     }
+    this.displayedColumns.push('Acciones');
    
   }
   applyFilter(event: Event) {
@@ -69,4 +71,21 @@ export class VehiculosComponent implements OnInit {
     }
   }
 
+  editarRegistro(element: any) {
+    this.modalService.titulo = "vehiculo";
+    this.modalService.accion.next("editarVehiculo");
+    this.modalService.vehiculo = element;
+    this.dialog.open(ModalTemplateComponent, {
+      height: 'auto', 
+      width: 'auto'
+    });
+  }
+
+  delete(element: any){
+    console.log(element);
+    const id:string = element.documentoinqui
+    console.log(id);
+    this.service.delete("Vehiculoes", id + "")
+  }
+  
 }

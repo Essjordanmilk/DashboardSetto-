@@ -1,10 +1,9 @@
-export interface SolicitudesModel{
+export class SolicitudesModel{
     idSolicitud: Number;
     documentoinqui: Number;
     tipoSoli: String;
-    horaSoli: Number; 
-    fechaSoli: Date;
+    horaSoli: String; 
+    fechaSoli: String;
     estado: String;
     idModificaciones: Number;
 }
-//hola 

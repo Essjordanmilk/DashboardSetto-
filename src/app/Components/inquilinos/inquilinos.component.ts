@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalTemplateComponent } from '../../Components/modal-template/modal-template.component';
 import { ApiService } from '../../api.service'
 import { ModalService } from 'src/app/service/modal/modal.service';
+import { InquilinosModel } from 'src/app/models/InquilinosModel';
 
 
 
@@ -18,30 +19,30 @@ export class InquilinosComponent implements OnInit {
 
   dataSource:MatTableDataSource<any>;
   displayedColumns: string[];
- 
+  Inquilinos = "INQUILINOS"
+  Acciones = "acciones"
 
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
+    constructor(public modalService:ModalService, public service:ApiService, public dialog: MatDialog) { 
+      this.dataSource=new MatTableDataSource();
+  }
+
   openDialog() {
-    this.modalService.titulo = "inquilino"
-    this.modalService.accion = "Bienvenido"
+    this.modalService.accion.next("crearInquilino")
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'
     }); 
   }
 
-  Inquilinos = "INQUILINOS"
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-    constructor(public modalService:ModalService, public service:ApiService, public dialog: MatDialog) { 
-      this.dataSource=new MatTableDataSource();
-  }
   ngOnInit(): void{
-    
     this.get();
-    
   }
+
+
   public async get(){
     await this.service.getAll("Inquilinoes").then((res)=>{
       for (let index = 0; index < res.length; index++) {
@@ -57,13 +58,13 @@ export class InquilinosComponent implements OnInit {
   }
   
 
-
   loadTable(data:any[]){
     
     this.displayedColumns=[];
     for(let column in data[0]){
-      this.displayedColumns.push(column)
+      this.displayedColumns.push(column);
     }
+    this.displayedColumns.push('Acciones');
    
   }
   applyFilter(event: Event) {
@@ -75,4 +76,22 @@ export class InquilinosComponent implements OnInit {
     }
   }
 
+  editarRegistro(element: any) {
+    this.modalService.accion.next("editarInquilino") 
+    this.modalService.inquilino = element
+    this.dialog.open(ModalTemplateComponent, {
+      height: 'auto', 
+      width: 'auto'
+    });
+  }
+  
+  deleteRegis(element:InquilinosModel){ 
+    const id = element.documentoInqui;
+    console.log(id);
+    
+    this.service.delete("Inquilinoes", String(id)).subscribe(resp => { 
+      console.log(resp);
+      
+    })
+  }
 }

@@ -1,59 +1,73 @@
-.title{
-    margin-left: 20px;
+.title {
+  margin-left: 20px;
 }
-table {
-    width: 95%;
-    margin: 10px 10px 10px 30px;
-    border-radius: 5%;
-  }
-  
-  .aling-icon {
-    text-align: right;
-  }
-  
-  .aling-icon a {
-    color: #513252;
-  }
-  
-  .aling-icon a:hover {
-    color: #CA4E7999;
-  
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 95%;
-    margin-left: 20px;
-    color: #513252;
-  }
-  
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 10px 40px 10px 20px;
-  }
-  
-  .example-button-container a{
-     text-decoration: none;
-     color: white;
-     text-decoration-color: none;
-  }
 
-  .button-contenedor{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding-top: 20px;
-    border-radius: 5%;
-    
-  }
-  .button{
-    background-color: #513252;
-    color: white;
-  }
-  
-  .button:hover{
-    background-color:#CA4E7999;
-    color: white;
-  }
+table {
+  width: 95%;
+  margin: 10px 10px 10px 30px;
+  border-radius: 5%;
+}
+
+.aling-icon {
+  text-align: right;
+}
+
+.aling-icon a {
+  color: #513252;
+}
+
+.aling-icon a:hover {
+  color: #CA4E7999;
+
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 95%;
+  margin-left: 20px;
+  color: #513252;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 40px 10px 20px;
+}
+
+.example-button-container a {
+  text-decoration: none;
+  color: white;
+  text-decoration-color: none;
+}
+
+.button-contenedor {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+  border-radius: 5%;
+
+}
+
+.button {
+  background-color: #513252;
+  color: white;
+}
+
+.button:hover {
+  background-color: #CA4E7999;
+  color: white;
+}
+
+.opcion {
+  text-decoration: none;
+  text-decoration-color: none;
+  color: #513252;
+  padding: 10px;
+}
+
+.opcion a:hover {
+  color: #CA4E7999;
+
+}

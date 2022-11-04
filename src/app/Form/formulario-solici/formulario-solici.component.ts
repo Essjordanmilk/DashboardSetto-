@@ -1,10 +1,8 @@
-import { Time } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
-import { InquilinosModel } from 'src/app/app/models/inquilinosModel';
-import { SolicitudesModel } from 'src/app/app/models/SolicitudesModel';
-import { SolicitudesComponent } from 'src/app/Components/solicitudes/solicitudes.component';
+import { SolicitudesModel } from 'src/app/models/SolicitudesModel';
+
 
 @Component({
   selector: 'app-formulario-solici',
@@ -26,26 +24,32 @@ export class FormularioSoliciComponent {
     });
   }
 
-  onSubmit() {
-    var idSolicitud = this.solicitudForm.controls['idSolicitud'].value
-    var documentoinquilino = this.solicitudForm.controls['documentoinqui'].value
-    var tipSolicitud = this.solicitudForm.controls['tipSolicitud'].value
-    var fecha = this.solicitudForm.controls['fecha'].value
-    var hora = this.solicitudForm.controls['hora'].value
-    var estado = this.solicitudForm.controls['estado'].value
-    var idModifi = this.solicitudForm.controls['idModificaciones'].value
+  infoInquilino:SolicitudesModel = {
+    idSolicitud: 0,
+    documentoinqui: 0,
+    tipoSoli: "",
+    horaSoli: "",
+    fechaSoli: "",
+    estado: "",
+    idModificaciones: 0,
+  }
 
-    var informacionInquilino: SolicitudesModel = Object.assign({
-      "idSolicitud": idSolicitud,
-      "documentoinqui": documentoinquilino,
-      "tipoSoli": tipSolicitud,
-      "horaSoli": hora,
-      "fechaSoli": fecha,
-      "estado": estado,
-      "idModificaciones": idModifi,
-    })
-    this.service.postAll("Solicitudes", informacionInquilino );
-    alert('Thanks!');
+
+  onSubmit() {
+    this.infoInquilino.idSolicitud = Number(this.solicitudForm.controls['idSolicitud'].value)
+    this.infoInquilino.documentoinqui = Number(this.solicitudForm.controls['documentoinqui'].value)
+    this.infoInquilino.tipoSoli = this.solicitudForm.controls['tipSolicitud'].value
+    this.infoInquilino.fechaSoli = this.solicitudForm.controls['fecha'].value
+    this.infoInquilino.horaSoli = this.solicitudForm.controls['hora'].value
+    this.infoInquilino.estado = this.solicitudForm.controls['estado'].value
+    this.infoInquilino.idModificaciones = Number(this.solicitudForm.controls['idModificaciones'].value)
+
+
+    this.service.create("Solicitudes", this.infoInquilino ).subscribe(resp=>{
+      console.log(resp);
+      
+    });
+    alert('Registro completado');
   }
 
 }

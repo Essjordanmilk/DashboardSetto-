@@ -19,6 +19,7 @@ export class VisitantesComponent implements OnInit {
   
 
   Visitantes = 'VISITANTES';
+  Acciones = "acciones"; 
 
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -46,8 +47,8 @@ export class VisitantesComponent implements OnInit {
   }
   
   openDialog() {
-    this.modalService.titulo = "visitante"
-    this.modalService.accion = "Agregar nuevo"
+    this.modalService.titulo = "visitante";
+    this.modalService.accion.next("crearVisitante");
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'
@@ -60,7 +61,7 @@ export class VisitantesComponent implements OnInit {
     for(let column in data[0]){
       this.displayedColumns.push(column)
     }
-   
+    this.displayedColumns.push('Acciones');
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -69,6 +70,22 @@ export class VisitantesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  editarRegistro(element: any) {
+    this.modalService.titulo = "visitante";
+    this.modalService.accion.next("editarVisitante");
+    this.modalService.visitante = element;
+    this.dialog.open(ModalTemplateComponent, {
+      height: 'auto', 
+      width: 'auto'
+    });
+  }
+
+
+  delete(element: any){
+    const id = element.documentoInqui
+    this.service.delete("Visitantes", id)
   }
 
 }

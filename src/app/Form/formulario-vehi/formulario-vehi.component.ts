@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
-import { VehiculoModel } from 'src/app/app/models/VehiculoModel';
+import { VehiculoModel } from 'src/app/models/VehiculoModel';
 
 @Component({
   selector: 'app-formulario-vehi',
@@ -23,22 +24,26 @@ export class FormularioVehiComponent {
     });
   }
 
+  infoVehiculo:VehiculoModel = {
+    documentoinqui: 0,
+    placa: "",
+    tipoVehiculo: "",
+    color: "",
+    modelo: "",
+  }
   onSubmit() {
-    var documentoInqui = this.VehiculoForm.controls['documentoinqui'].value
-    var placa = this.VehiculoForm.controls['placa'].value
-    var tipoVehi = this.VehiculoForm.controls['tip_vehiculo'].value
-    var color = this.VehiculoForm.controls['color'].value
-    var model = this.VehiculoForm.controls['modelo'].value
+    this.infoVehiculo.documentoinqui = Number(this.VehiculoForm.controls['documentoinqui'].value)
+    this.infoVehiculo.placa = this.VehiculoForm.controls['placa'].value
+    this.infoVehiculo.tipoVehiculo = this.VehiculoForm.controls['tip_vehiculo'].value
+    this.infoVehiculo.color = this.VehiculoForm.controls['color'].value
+    this.infoVehiculo.modelo = this.VehiculoForm.controls['modelo'].value
 
-    var informacionvehiculo: VehiculoModel = Object.assign({
-      "documentoinqui": documentoInqui,
-      "placa": placa,
-      "tipoVehiculo": tipoVehi,
-      "color": color,
-      "modelo": model
-    })
-    this.service.postAll("Vehiculoes", informacionvehiculo ); 
-    alert('Thanks!');
+
+    this.service.create("Vehiculoes", this.infoVehiculo ).subscribe(resp=>{
+      console.log(resp);
+      
+    });
+    alert('Registro completado');
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
-import { VisitanteModel } from 'src/app/app/models/VisitanteModel';
+import { VisitanteModel } from 'src/app/models/VisitanteModel';
 
 
 @Component({
@@ -30,29 +30,31 @@ formularioVisi : FormGroup;
     });
   }
 
+  infoInqui:VisitanteModel = {
+    documentoinqui: 0,
+    nombreVisi: "",
+    documentoVisi: 0,
+    hora: "",
+    fecha: "",
+    detallesVisi: "",
+    torre: 0,
+    apartamento: 0,
+  }
+
   onSubmit() {
-    var DocumentoInqui = this.formularioVisi.controls['documentoinqui'].value
-    var nombreVisitante = this.formularioVisi.controls['nombreVisitante'].value
-    var detalles = this.formularioVisi.controls['detallesVisitante'].value
-    var documentovisi = this.formularioVisi.controls['documentoVisitante'].value
-    var fecha = this.formularioVisi.controls['fecha'].value
-    var hora = this.formularioVisi.controls['hora'].value
-    var torre = this.formularioVisi.controls['torre'].value
-    var apartamento = this.formularioVisi.controls['apartamento'].value
+    this.infoInqui.documentoinqui = Number(this.formularioVisi.controls['documentoinqui'].value)
+    this.infoInqui.nombreVisi = this.formularioVisi.controls['nombreVisitante'].value
+    this.infoInqui.detallesVisi = this.formularioVisi.controls['detallesVisitante'].value
+    this.infoInqui.documentoVisi = Number(this.formularioVisi.controls['documentoVisitante'].value)
+    this.infoInqui.fecha = this.formularioVisi.controls['fecha'].value
+    this.infoInqui.hora = this.formularioVisi.controls['hora'].value
+    this.infoInqui.torre = Number(this.formularioVisi.controls['torre'].value)
+    this.infoInqui.apartamento = Number(this.formularioVisi.controls['apartamento'].value)
+    console.log(this.infoInqui);
 
-
-    var informacionInqui: VisitanteModel = Object.assign({
-      "documentoinqui": DocumentoInqui,
-      "nombreVisitante": nombreVisitante,
-      "documentoVisi": documentovisi,
-      "hora": hora,
-      "fecha": fecha,
-      "detallesVisi": detalles,
-      "torre": torre,
-      "apartamento": apartamento,
-    })
-    this.service.postAll("Visitantes", informacionInqui ); 
-    alert('Thanks!');
+    
+    this.service.create("Visitantes", this.infoInqui ); 
+    alert('Registro completado');
   }
 
 }

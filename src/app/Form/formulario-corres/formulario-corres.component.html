@@ -18,7 +18,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Id" formControlName="idSolicitud"></textarea>
+            <textarea type="number" matInput placeholder="Id" formControlName="idSolicitud"></textarea>
             <mat-error *ngIf="Correspondencia.controls['idSolicitud'].hasError('requerido')">
               Id <strong>requerido</strong>
             </mat-error>
@@ -28,15 +28,15 @@
   
       <div class="row">
         <div class="col">
-          <mat-form-field appearance="fill" formControlName="tipoCorres">
+          <mat-form-field appearance="fill">
             <mat-label>Tipo Correspondencia</mat-label>
-            <mat-select>
-              <mat-option value="one">Correo</mat-option>
-              <mat-option value="two">Recibo Internet</mat-option>
-              <mat-option value="three">Recibo Agua</mat-option>
-              <mat-option value="four">Recibo Luz</mat-option>
-              <mat-option value="five">Recibo Gas</mat-option>
-              <mat-option value="six">Paqueteria</mat-option>
+            <mat-select formControlName="tipoCorres">
+              <mat-option value="Correo">Correo</mat-option>
+              <mat-option value="Recibo Internet">Recibo Internet</mat-option>
+              <mat-option value="Recibo Agua">Recibo Agua</mat-option>
+              <mat-option value="Recibo Luz">Recibo Luz</mat-option>
+              <mat-option value="Recibo Gas">Recibo Gas</mat-option>
+              <mat-option value="Paqueteria">Paqueteria</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

@@ -9,11 +9,8 @@ import { ModalService } from 'src/app/service/modal/modal.service';
 export class ModalTemplateComponent implements OnInit {
 
   constructor(public modalservice:ModalService) { }
-  titulo = ''
-  accion = ''
+  titulo = "";
   ngOnInit(): void {
-    this.titulo = this.modalservice.titulo
-    this.accion = this.modalservice.accion
+    this.titulo = this.modalservice.accion.value;
   }
-
 }

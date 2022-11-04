@@ -1,4 +1,4 @@
-export interface VehiculoModel{
+export class VehiculoModel{
     documentoinqui: Number;
     placa: String;
     tipoVehiculo: String;

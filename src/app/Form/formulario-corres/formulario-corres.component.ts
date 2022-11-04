@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
-import { CorrespondenciaModel } from 'src/app/app/models/CorrespondeciaModel';
+import { CorrespondenciaModel } from 'src/app/models/CorrespondeciaModel';
 
 @Component({
   selector: 'app-formulario-corres',
@@ -19,21 +19,25 @@ export class FormularioCorresComponent {
         'idSolicitud': ['', Validators.required],
       });
   }
-
-  onSubmit(){
+  
+  infocorres:CorrespondenciaModel = {
+    idCorrespondencia: 0,
+    tipoCorrespondencia: "",
+    documentoInqui: 0 ,
+ }
+ onSubmit(){
     
-    var documentoinquilino = this.Correspondencia.controls['documentoinqui'].value
-    var tipoCorrespondencia = this.Correspondencia.controls['tipoCorres'].value 
-    var idSolicitud = this.Correspondencia.controls['idSolicitud'].value
-
-    var informacionCorres: CorrespondenciaModel = Object.assign({
-    "documentoInqui" : documentoinquilino,
-    "tipoCorrespondencia" : tipoCorrespondencia,
-    "idCorrespondencia" : idSolicitud
-  })
-    this.service.postAll("Correspondenciums", informacionCorres ); 
-    alert("Registro completado"); 
+    this.infocorres.documentoInqui= Number(this.Correspondencia.controls['documentoinqui'].value)
+    this.infocorres.tipoCorrespondencia = this.Correspondencia.controls['tipoCorres'].value 
+    this.infocorres.idCorrespondencia =  Number(this.Correspondencia.controls['idSolicitud'].value)
+    console.log(this.infocorres);
+    
+    this.service.create("Correspondenciums", this.infocorres ).subscribe(resp =>{
+      console.log(resp);
+      
+    });
+    alert('Registro completado'); 
   }
 
-  
+
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="inquilinosForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="inquilinosForm" novalidate (ngSubmit)="onSubmit(inquilinosForm.value)">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Información General</mat-card-title>
@@ -64,10 +64,10 @@
 
         <div class="col">
           <mat-form-field appearance="fill">
-            <mat-label formControlName="vehiculo">Vehiculo</mat-label>
-            <mat-select>
-              <mat-option value="one">Si</mat-option>
-              <mat-option value="two">No</mat-option>
+            <mat-label>Vehiculo</mat-label>
+            <mat-select formControlName="vehiculo">
+              <mat-option value="Si">Si</mat-option>
+              <mat-option value="No">No</mat-option>
             </mat-select>
             <mat-error *ngIf="inquilinosForm.controls['vehiculo'].hasError('requerido')">
               Campo <strong>requerido</strong>

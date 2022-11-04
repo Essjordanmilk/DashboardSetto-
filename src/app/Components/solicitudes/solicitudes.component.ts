@@ -20,6 +20,7 @@ export class SolicitudesComponent implements OnInit {
 
   
   Solicitudes = 'SOLICITUDES';
+  Acciones = "acciones"; 
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -46,8 +47,8 @@ export class SolicitudesComponent implements OnInit {
   }
   
   openDialog() {
-    this.modalService.titulo = "solicitud"
-    this.modalService.accion = "Agregar nueva"
+    this.modalService.titulo = "solicitud";
+    this.modalService.accion.next("crearSolicitudes");
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'
@@ -60,7 +61,7 @@ export class SolicitudesComponent implements OnInit {
     for(let column in data[0]){
       this.displayedColumns.push(column)
     }
-   
+    this.displayedColumns.push('Acciones');
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -69,6 +70,23 @@ export class SolicitudesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  editarRegistro(element: any) {
+    this.modalService.titulo = "solicitud";
+    this.modalService.accion.next("editarSolicitudes");
+    this.modalService.solicitudes = element;
+    this.dialog.open(ModalTemplateComponent, {
+      height: 'auto', 
+      width: 'auto'
+    });
+  }
+
+
+  delete(element: any){
+    const id = element.documentoInqui
+    this.service.delete("Solicitudes", id)
   }
 
 }

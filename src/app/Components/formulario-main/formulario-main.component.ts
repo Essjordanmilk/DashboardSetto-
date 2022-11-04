@@ -18,7 +18,7 @@ export class FormularioMainComponent implements OnInit {
 
   openDialog() {
     this.modalService.titulo = "correspondencia"
-    this.modalService.accion = "Agregar nuevo"
+    this.modalService.accion.next("crearcorrespondencia");
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'

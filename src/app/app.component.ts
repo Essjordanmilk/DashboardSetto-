@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './service/login/login.service';
 
 
 @Component({
@@ -6,13 +7,23 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Setto';
-  login = true; 
+  login: String = "";
 
-  public inquilinos: Array<any> = []
-  
+  constructor(public loginservice: LoginService){ }
 
+  ngOnInit(): void {
+    if (this.loginservice.user.value != null) { 
+      this.loginservice.login.next("login");
+    } else { 
+      this.loginservice.login.next("logout");
+    }
 
+    this.loginservice.login.subscribe(value => { 
+      this.login = value;
+      console.log(this.login);
+    })
+  }
 
 }
