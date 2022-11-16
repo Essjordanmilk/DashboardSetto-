@@ -1,6 +1,7 @@
-export interface PerfilModel{
-    nombre: String; 
-    documentoPer: Number; 
-    documentoInqui: Number; 
-    edad: Number; 
+export interface PerfilModel
+{
+    nombre: string,
+    documentoPer: number, 
+    documentoInqui: number, 
+    edad: number
 }

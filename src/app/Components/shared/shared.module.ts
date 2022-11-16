@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
+//graficas 
 
 
 @NgModule({
@@ -29,7 +29,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule, 
     MatFormFieldModule, 
     FormsModule, 
-    MatDialogModule
+    MatDialogModule, 
+    //NgxChartsModule, 
+    //BrowserAnimationsModule, 
+    
+
     
   ],
   exports: [
@@ -42,7 +46,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatFormFieldModule, 
     FormsModule, 
-    MatDialogModule
+    MatDialogModule,
+    //NgxChartsModule,
+    //BrowserAnimationsModule 
      
   ]
 })

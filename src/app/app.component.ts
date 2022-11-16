@@ -10,11 +10,12 @@ import { LoginService } from './service/login/login.service';
 export class AppComponent implements OnInit {
   title = 'Setto';
   login: String = "";
-
+  Session='';
   constructor(public loginservice: LoginService){ }
 
   ngOnInit(): void {
-    if (this.loginservice.user.value != null) { 
+    this.Session=sessionStorage.getItem('Session')|| '{}'
+    if (this.Session != null) { 
       this.loginservice.login.next("login");
     } else { 
       this.loginservice.login.next("logout");

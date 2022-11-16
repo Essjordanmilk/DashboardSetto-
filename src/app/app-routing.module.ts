@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'vehiculos', component: VehiculosComponent },
   { path: 'visitantes', component: VisitantesComponent },
-  { path: 'formulario', component: FormularioComponent }
+  { path: 'formulario', component: FormularioComponent },
+  {path: '',component:DashboardComponent},
+  {path:'**', component:DashboardComponent}
 ];
 
 @NgModule({

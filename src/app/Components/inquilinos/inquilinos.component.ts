@@ -28,6 +28,7 @@ export class InquilinosComponent implements OnInit {
 
     constructor(public modalService:ModalService, public service:ApiService, public dialog: MatDialog) { 
       this.dataSource=new MatTableDataSource();
+      
   }
 
   openDialog() {
