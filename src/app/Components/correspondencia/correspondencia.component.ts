@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalTemplateComponent } from '../../Components/modal-template/modal-template.component';
 import { ApiService } from '../../api.service';
 import { ModalService } from 'src/app/service/modal/modal.service';
+import { CorrespondenciaModel } from 'src/app/models/CorrespondeciaModel';
 
 @Component({
   selector: 'app-correspondencia',
@@ -16,7 +17,7 @@ export class CorrespondenciaComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[];
   Correspondencia = 'CORRESPONDENCIA';
-  Acciones = "acciones"
+  Acciones = 'acciones'; 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -28,6 +29,16 @@ export class CorrespondenciaComponent implements OnInit {
   ) {
     this.dataSource = new MatTableDataSource();
   }
+
+  openDialog() {
+    this.modalService.titulo = 'correspondencia';
+    this.modalService.accion.next('Asignar Correspondencia');
+    this.dialog.open(ModalTemplateComponent, {
+      height: 'auto',
+      width: 'auto',
+    });
+  }
+
   ngOnInit(): void {
     this.get();
   }
@@ -42,21 +53,14 @@ export class CorrespondenciaComponent implements OnInit {
     });
   }
 
-  openDialog() {
-    this.modalService.titulo = 'correspondencia';
-    this.modalService.accion.next("crearCorrespondencia");
-    this.dialog.open(ModalTemplateComponent, {
-      height: 'auto',
-      width: 'auto',
-    });
-  }
+
 
   loadTable(data: any[]) {
     this.displayedColumns = [];
     for (let column in data[0]) {
       this.displayedColumns.push(column);
     }
-    this.displayedColumns.push("Acciones");
+    this.displayedColumns.push('Acciones');
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -68,8 +72,7 @@ export class CorrespondenciaComponent implements OnInit {
   }
 
   editarRegistro(element: any) {
-    this.modalService.titulo = "correspondencia"
-    this.modalService.accion.next("editarCorrespondencia");
+    this.modalService.accion.next('Editar Correspondencia');
     this.modalService.correspondencia = element
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
@@ -78,8 +81,12 @@ export class CorrespondenciaComponent implements OnInit {
   }
 
 
-  delete(element: any){
-    const id = element.documentoInqui
-    this.service.delete("Correspondenciums", id)
+  deleteRegis(element: CorrespondenciaModel) {
+    const id = element.documentoInqui;
+    console.log(id);
+
+    this.service.delete('Correspondenciums', String(id)).subscribe((resp) => {
+      console.log(resp);
+    });
   }
 }

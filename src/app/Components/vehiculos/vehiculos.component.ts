@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalTemplateComponent } from '../../Components/modal-template/modal-template.component';
 import { ApiService } from '../../api.service'
 import { ModalService } from 'src/app/service/modal/modal.service';
+import { VehiculoModel } from 'src/app/models/VehiculoModel';
 
 
 @Component({
@@ -17,21 +18,32 @@ export class VehiculosComponent implements OnInit {
 
   dataSource:MatTableDataSource<any>;
   displayedColumns: string[];
-  Vehiculos = "VEHICULOS"
-  Acciones = "acciones"
+  Vehiculos = 'VEHICULOS';
+  Acciones = 'acciones';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-    constructor(public modalService:ModalService,public service:ApiService, public dialog: MatDialog) { 
-      this.dataSource=new MatTableDataSource();
+  constructor(
+    public modalService: ModalService,
+    public service: ApiService,
+    public dialog: MatDialog
+  ) {
+    this.dataSource = new MatTableDataSource();
   }
+  openDialog() {
+    this.modalService.titulo = 'vehiculo';
+    this.modalService.accion.next('Registrar Vehiculo');
+    this.dialog.open(ModalTemplateComponent, {
+      height: 'auto', 
+      width: 'auto'
+    }); 
+  }
+
   ngOnInit(): void{
-    
     this.get();
-    
   }
   public async get(){
-    await this.service.getAll("Vehiculoes").then((res)=>{
+    await this.service.getAll('Vehiculoes').then((res)=>{
       for (let index = 0; index < res.length; index++) {
         this.loadTable([res[index]]);
         
@@ -43,14 +55,7 @@ export class VehiculosComponent implements OnInit {
     });
   
   }
-  openDialog() {
-    this.modalService.titulo = "vehiculo";
-    this.modalService.accion.next("crearVehiculo");
-    this.dialog.open(ModalTemplateComponent, {
-      height: 'auto', 
-      width: 'auto'
-    }); 
-  }
+
 
 
   loadTable(data:any[]){
@@ -72,8 +77,7 @@ export class VehiculosComponent implements OnInit {
   }
 
   editarRegistro(element: any) {
-    this.modalService.titulo = "vehiculo";
-    this.modalService.accion.next("editarVehiculo");
+    this.modalService.accion.next('Editar Registro');
     this.modalService.vehiculo = element;
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
@@ -81,11 +85,13 @@ export class VehiculosComponent implements OnInit {
     });
   }
 
-  delete(element: any){
-    console.log(element);
-    const id:string = element.documentoinqui
+  deleteRegis(element: VehiculoModel) {
+    const id = element.documentoinqui;
     console.log(id);
-    this.service.delete("Vehiculoes", id + "")
+
+    this.service.delete('Vehiculoes', String(id)).subscribe((resp) => {
+      console.log(resp);
+    });
   }
   
 }

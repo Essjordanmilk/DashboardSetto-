@@ -41,7 +41,7 @@ export class ApiService {
     return this.http.post(this.url + controller, body);
   }
 
-  //actualziar informacion en la base de datos
+  //actualizar informacion en la base de datos
   update(controller:string, id:string, body:any) {
     return this.http.put(this.url+controller+ "/" +id, body);
   }

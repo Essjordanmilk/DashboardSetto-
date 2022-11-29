@@ -9,12 +9,12 @@ import { PerfilModel } from 'src/app/models/PerfilModel';
 export class LoginService implements OnInit {
   usuario : PerfilModel | null = null; 
   user = new BehaviorSubject(this.usuario);
-  login = new BehaviorSubject("logout"); 
+  login = new BehaviorSubject(localStorage.getItem('login') || "");
 
   constructor() { }
 
   ngOnInit(): void {
-    this.login.next("logout"); 
+    this.login.next(localStorage.getItem('login') || ""); 
     this.user.next(null);
   }
 

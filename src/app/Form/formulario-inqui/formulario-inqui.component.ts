@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 import { InquilinosModel } from 'src/app/models/InquilinosModel';
 import { ModalService } from 'src/app/service/modal/modal.service';
@@ -25,12 +20,12 @@ export class FormularioInquiComponent implements OnInit {
   });
 
   inquilino: InquilinosModel = {
-    nombre: "",
+    nombre: '',
     documentoInqui: 0,
     edad: 0,
     torre: 0,
     apartamento: 0,
-    vehiculo: "",
+    vehiculo: '',
   };
 
   controller = 'Inquilinoes';
@@ -42,7 +37,7 @@ export class FormularioInquiComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.modalService.accion.value == 'editarInquilino') {
+    if (this.modalService.accion.value == 'Editar Inquilino') {
       //console.log(this.modalService.inquilino);
 
       this.inquilinosForm.controls['documentoinqui'].setValue(
@@ -66,7 +61,7 @@ export class FormularioInquiComponent implements OnInit {
     }
   }
   onSubmit(data: any) {
-    if (this.modalService.accion.value == 'crearInquilino') {
+    if (this.modalService.accion.value == 'Crear Inquilino') {
       this.inquilino.documentoInqui = Number(data.documentoinqui);
       this.inquilino.nombre = data.nombreInqui;
       this.inquilino.edad = Number(data.edad);
@@ -74,22 +69,17 @@ export class FormularioInquiComponent implements OnInit {
       this.inquilino.torre = Number(data.torre);
       this.inquilino.vehiculo = data.vehiculo;
       console.log(data);
-      
+
       this.service.create(this.controller, this.inquilino).subscribe((resp) => {
         console.log(resp);
       });
     } else {
-      
-      
       this.inquilino.documentoInqui = Number(data.documentoinqui);
       this.inquilino.nombre = data.nombreInqui;
       this.inquilino.edad = Number(data.edad);
       this.inquilino.apartamento = Number(data.apartamento);
       this.inquilino.torre = Number(data.torre);
       this.inquilino.vehiculo = data.vehiculo;
-
-      
-      
 
       this.service
         .update(this.controller, data.documentoinqui, this.inquilino)

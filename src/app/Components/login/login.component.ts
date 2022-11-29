@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { PerfilModel } from 'src/app/models/PerfilModel';
-import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
 import { LoginService } from 'src/app/service/login/login.service';
 import { ModalService } from 'src/app/service/modal/modal.service';
 
@@ -30,16 +29,18 @@ export class LoginComponent implements OnInit {
     this.em = Number(this.loginForm.controls["username"].value); 
     this.pass = Number(this.loginForm.controls["password"].value); 
 
-    var Dataresponse:any = await (this.apiservice.login("login", this.em, this.pass))
+    var Dataresponse:any = await (this.apiservice.login('login', this.em, this.pass))
     this.user = Dataresponse[0]; 
 
     if(this.em == this.user.documentoPer && this.pass == this.user.documentoInqui){
       //alert("registro exitoso");
-      this.router.navigateByUrl("/inquilinos");
-      this.loginservice.user.next(this.user);
+      localStorage.setItem('login', 'login');
       this.loginservice.login.next("login");
+      /*this.router.navigateByUrl('/inquilinos');
+      this.loginservice.user.next(this.user);
+      this.loginservice.login.next('login');
       sessionStorage.setItem('Session', this.user.documentoInqui+this.user.nombre);
-      localStorage.setItem("Usuario",JSON.stringify(this.user));
+      localStorage.setItem('Usuario',JSON.stringify(this.user));*/
     }
   }
   ngOnInit(): void {

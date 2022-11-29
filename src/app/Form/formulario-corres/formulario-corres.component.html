@@ -1,4 +1,4 @@
-<form [formGroup]="Correspondencia" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="Correspondencia" novalidate (ngSubmit)="onSubmit(Correspondencia.value)">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Información General</mat-card-title>

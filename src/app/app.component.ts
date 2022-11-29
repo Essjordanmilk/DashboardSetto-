@@ -14,13 +14,23 @@ export class AppComponent implements OnInit {
   constructor(public loginservice: LoginService){ }
 
   ngOnInit(): void {
-    this.Session=sessionStorage.getItem('Session')|| '{}'
-    if (this.Session != null) { 
-      this.loginservice.login.next("login");
-    } else { 
-      this.loginservice.login.next("logout");
-    }
+  if(localStorage.getItem('login')==null){
+    localStorage.setItem('login', 'logout');
+  }
+  if (this.loginservice.login.value == "login") { 
+    this.loginservice.login.next("login");
+  } else { 
+    this.loginservice.login.next("logout");
+  }
 
+
+  /*
+  if (this.Session != null) { 
+    this.loginservice.login.next('logout');
+  } else { 
+    this.loginservice.login.next('login');
+  }
+*/
     this.loginservice.login.subscribe(value => { 
       this.login = value;
       console.log(this.login);

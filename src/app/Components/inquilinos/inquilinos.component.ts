@@ -32,7 +32,7 @@ export class InquilinosComponent implements OnInit {
   }
 
   openDialog() {
-    this.modalService.accion.next("crearInquilino")
+    this.modalService.accion.next("Crear Inquilino")
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'
@@ -78,7 +78,7 @@ export class InquilinosComponent implements OnInit {
   }
 
   editarRegistro(element: any) {
-    this.modalService.accion.next("editarInquilino") 
+    this.modalService.accion.next("Editar Inquilino") 
     this.modalService.inquilino = element
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 

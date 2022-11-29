@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalTemplateComponent } from '../../Components/modal-template/modal-template.component';
 import { ApiService } from '../../api.service'
 import { ModalService } from 'src/app/service/modal/modal.service';
+import { VisitanteModel } from 'src/app/models/VisitanteModel';
 
 @Component({
   selector: 'app-visitantes',
@@ -24,6 +25,7 @@ export class VisitantesComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
     constructor(public modalService:ModalService, private service:ApiService, public dialog: MatDialog) { 
       this.dataSource=new MatTableDataSource();
   }
@@ -47,8 +49,7 @@ export class VisitantesComponent implements OnInit {
   }
   
   openDialog() {
-    this.modalService.titulo = "visitante";
-    this.modalService.accion.next("crearVisitante");
+    this.modalService.accion.next('Crear Visitante');
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
       width: 'auto'
@@ -73,8 +74,7 @@ export class VisitantesComponent implements OnInit {
   }
 
   editarRegistro(element: any) {
-    this.modalService.titulo = "visitante";
-    this.modalService.accion.next("editarVisitante");
+    this.modalService.accion.next('Editar Visitante');
     this.modalService.visitante = element;
     this.dialog.open(ModalTemplateComponent, {
       height: 'auto', 
@@ -83,9 +83,14 @@ export class VisitantesComponent implements OnInit {
   }
 
 
-  delete(element: any){
-    const id = element.documentoInqui
-    this.service.delete("Visitantes", id)
+  deleteRegis(element:VisitanteModel){ 
+    const id = element.documentoinqui;
+    console.log(id);
+    
+    this.service.delete("Visitantes", String(id)).subscribe(resp => { 
+      console.log(resp);
+      
+    })
   }
 
 }
