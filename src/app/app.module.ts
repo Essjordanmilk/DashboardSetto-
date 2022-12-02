@@ -37,8 +37,9 @@ import { FormularioCorresComponent } from './Form/formulario-corres/formulario-c
 import { FormularioSoliciComponent } from './Form/formulario-solici/formulario-solici.component';
 import { FormularioVehiComponent } from './Form/formulario-vehi/formulario-vehi.component';
 import { FormularioMainComponent } from './Components/formulario-main/formulario-main.component';
-
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PruebaComponent } from './Components/prueba/prueba.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FormularioMainComponent } from './Components/formulario-main/formulario
     FormularioCorresComponent,
     FormularioSoliciComponent,
     FormularioVehiComponent,
-    FormularioMainComponent
+    FormularioMainComponent,
+    PruebaComponent
 
   ],
   imports: [
@@ -81,7 +83,10 @@ import { FormularioMainComponent } from './Components/formulario-main/formulario
     ReactiveFormsModule, 
     MatPaginatorModule, 
     MatTableModule, 
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxChartsModule,
+    NgChartsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

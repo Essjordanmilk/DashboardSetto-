@@ -17,19 +17,10 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
 
-         
-          
-   
-             
-        <!-- <div class="chart-container">
-            <canvas id="MyChart">{{usuarios}}</canvas>
-          </div>-->  
-          
-
-
-
-      
-
+          <div class="chart-container">
+            <canvas id="solicitud">{{Solicitudes}}</canvas>
+          </div>
+    
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -51,7 +42,10 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
- 
+          
+          <div class="chart-container">
+            <canvas id="graficoL">{{graficoLineal}}</canvas>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -72,7 +66,9 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-
+          <div class="chart-container">
+            <canvas id="graficoC">{{grafico2}}</canvas>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -93,7 +89,9 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-
+          <div class="chart-container">
+            <canvas id="report">{{reportes}}</canvas>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
